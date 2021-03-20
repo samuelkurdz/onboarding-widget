@@ -23,19 +23,21 @@
     This is a renmoney loan application Widget
     <button class="continue-button" type="submit" (click)="startApplication()">Start Application</button>
   </div>
-  <form
-      *ngIf="formIndex === 1" [formGroup]="eligibilityForm" #ngEligibilityForm="ngForm"
-      class="eligibility-check" (ngSubmit)="submitGenericForm('eligibilityForm')">
+
+  <form *ngIf="formIndex === 1" [formGroup]="eligibilityForm" #ngEligibilityForm="ngForm"
+        class="eligibility-check" (ngSubmit)="submitGenericForm('eligibilityForm')">
     <div class="form-group">
       <label for="name">Full Name (middle name included)</label>
-      <input type="text" name="name" id="name" formControlName="name">
+      <input type="text" name="name" id="name" formControlName="name"
+             [ngClass]="{'dirty-input-field': eligibilityForm.controls.name.touched && eligibilityForm.controls.name.invalid}">
       <span class="error-message" *ngIf="ngEligibilityForm.submitted">
         <span *ngIf="eligibilityForm.controls.name.invalid">Full name is required</span>
       </span>
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" formControlName="email" [email]="true">
+      <input type="email" name="email" id="email" formControlName="email" [email]="true"
+             [ngClass]="{'dirty-input-field': eligibilityForm.controls.email.touched && eligibilityForm.controls.email.invalid}">
       <span class="error-message" *ngIf="ngEligibilityForm.submitted || eligibilityForm.controls.email.dirty">
         <span *ngIf="eligibilityForm.controls.email.invalid && eligibilityForm.controls.email.dirty">Incorrect Email Format!</span>
         <span *ngIf="eligibilityForm.controls.email.invalid && eligibilityForm.controls.email.pristine">Email is required!</span>
@@ -43,7 +45,8 @@
     </div>
     <div class="form-group">
       <label for="DOB">Date of Birth</label>
-      <input type="date" name="DOB" id="DOB" formControlName="DOB">
+      <input type="date" name="DOB" id="DOB" formControlName="DOB"
+             [ngClass]="{'dirty-input-field': eligibilityForm.controls.DOB.touched && eligibilityForm.controls.DOB.invalid}">
       <span class="error-message" *ngIf="ngEligibilityForm.submitted">
         <span *ngIf="eligibilityForm.controls.DOB.invalid">Date of birth is required</span>
       </span>
@@ -51,7 +54,8 @@
     <div class="flex-form-group">
       <div class="form-group">
         <label for="employmentState">Employment Status?</label>
-        <select name="employmentState" id="employmentState" formControlName="employmentState">
+        <select name="employmentState" id="employmentState" formControlName="employmentState"
+                [ngClass]="{'dirty-input-field': eligibilityForm.controls.employmentState.touched && eligibilityForm.controls.employmentState.invalid}">
           <option selected>Select...</option>
           <option value="employed">Employed</option>
           <option value="self-employed">Self Employed</option>
@@ -62,7 +66,8 @@
       </div>
       <div class="form-group">
         <label for="gender">Gender</label>
-        <select name="gender" id="gender" formControlName="gender">
+        <select name="gender" id="gender" formControlName="gender"
+                [ngClass]="{'dirty-input-field': eligibilityForm.controls.gender.touched && eligibilityForm.controls.gender.invalid}">
           <option selected>Select...</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -74,7 +79,8 @@
     </div>
     <div class="form-group">
       <label for="phone">Phone Number</label>
-      <input type="number" name="phone" id="phone" formControlName="phone">
+      <input type="number" name="phone" id="phone" formControlName="phone"
+             [ngClass]="{'dirty-input-field': eligibilityForm.controls.phone.touched && eligibilityForm.controls.phone.invalid}">
       <span class="error-message" *ngIf="ngEligibilityForm.submitted">
         <span *ngIf="eligibilityForm.controls.phone.invalid">Your Phone Number is required!</span>
       </span>
@@ -82,7 +88,8 @@
     <div class="flex-form-group">
       <div class="form-group">
         <label for="state">Where do you live?</label>
-        <select name="state" id="state" formControlName="state">
+        <select name="state" id="state" formControlName="state"
+                [ngClass]="{'dirty-input-field': eligibilityForm.controls.state.touched && eligibilityForm.controls.state.invalid}">
           <option selected>Select...</option>
           <ng-container *ngFor="let state of statesInNigeria">
             <option [value]="state.state">{{state.state}}</option>
@@ -94,7 +101,8 @@
       </div>
       <div class="form-group">
         <label for="lga">Local Government</label>
-        <select name="lga" id="lga" formControlName="lga">
+        <select name="lga" id="lga" formControlName="lga"
+                [ngClass]="{'dirty-input-field': eligibilityForm.controls.lga.touched && eligibilityForm.controls.lga.invalid}">
           <option selected>Select...</option>
           <ng-container *ngFor="let state of statesInNigeria">
             <option [value]="state.state">{{state.state}}</option>
@@ -107,7 +115,8 @@
     </div>
     <div class="form-group">
       <label for="bvn">BVN</label>
-      <input type="number" name="bvn" id="bvn" formControlName="bvn">
+      <input type="number" name="bvn" id="bvn" formControlName="bvn"
+             [ngClass]="{'dirty-input-field': eligibilityForm.controls.bvn.touched && eligibilityForm.controls.bvn.invalid}">
       <span class="error-message" *ngIf="ngEligibilityForm.submitted">
           <span *ngIf="eligibilityForm.controls.bvn.invalid">Bank Verification Number is required!</span>
         </span>
