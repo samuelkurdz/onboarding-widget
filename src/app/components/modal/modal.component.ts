@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {State} from '../../models/state.model';
 import Nigeria from '../../utils/states-data';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {GetTodosService} from '../../services/get-todos.service';
 
 @Component({
   selector: 'renmoney-modal',
@@ -12,13 +13,16 @@ export class ModalComponent implements OnInit {
   @Output() closeModal = new EventEmitter<boolean>();
 
   displayedFormIndex = 0;
+  localGovernmentChoiceArray: string[];
   eligibilityForm: FormGroup;
   personalForm: FormGroup;
   employerForm: FormGroup;
 
   statesInNigeria: State[];
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private getTodoService: GetTodosService
   ) {
     this.statesInNigeria = Nigeria;
   }
@@ -75,6 +79,11 @@ export class ModalComponent implements OnInit {
     this.displayedFormIndex += 1;
   }
 
+  prepareLocalGovernmentOptions(event): void {
+    const selectedState = this.statesInNigeria.find(state => state.state === event.target.value);
+    selectedState ? this.localGovernmentChoiceArray = selectedState.lgas : this.localGovernmentChoiceArray = [];
+  }
+
   submitGenericForm(formName: string): void {
     switch (formName) {
       case 'personalForm':
@@ -99,6 +108,22 @@ export class ModalComponent implements OnInit {
         }
         break;
     }
+  }
+
+  endApplication(): void {
+    this.toggleModalState();
+    // console.log(this.eligibilityForm.value, 'eligibilityForm');
+    // console.log(this.personalForm.value, 'personalForm');
+    // console.log(this.employerForm.value, 'employerForm');
+    this.getTodoService.getTodo().subscribe((response) => {
+      console.log(response);
+    });
+    const summedData = {
+      ...this.eligibilityForm.value,
+      ...this.personalForm.value,
+      ...this.employerForm.value
+    };
+    console.log(summedData);
   }
 
 }
