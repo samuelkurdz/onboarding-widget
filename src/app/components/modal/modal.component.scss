@@ -14,6 +14,21 @@
   box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
 
+.long-modal {
+  height: 720px;
+}
+
+.welcome-modal {
+  height: 500px;
+}
+
+.welcome-message {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /** Overlay */
 .overlay {
   transition: opacity 0.3s;
@@ -61,27 +76,6 @@
       font-weight: bolder;
     }
   }
-  //.modal-header {
-  //  display: flex;
-  //  justify-content: space-between;
-  //
-  //  .modal-close-btn {
-  //    position: absolute;
-  //    right: 10px;
-  //    top: 10px;
-  //    border: none;
-  //    background: transparent;
-  //    outline: none;
-  //    cursor: pointer;
-  //    font-weight: 500;
-  //    font-size: 22px;
-  //    transition: 0.3s all;
-  //
-  //    &:hover {
-  //      font-weight: bolder;
-  //    }
-  //  }
-  //}
 
   .modal-body {
     margin-top: 18px;
@@ -148,4 +142,11 @@
   position: absolute;
   bottom: 10px;
   right: 3%;
+}
+
+span.error-message {
+  span {
+    color: red;
+    font-size: 12px;
+  }
 }
