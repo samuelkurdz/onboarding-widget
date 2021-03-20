@@ -57,7 +57,7 @@
         <label for="employmentState">Employment Status?</label>
         <select name="employmentState" id="employmentState" formControlName="employmentState"
                 [ngClass]="{'dirty-input-field': eligibilityForm.controls.employmentState.touched && eligibilityForm.controls.employmentState.invalid}">
-          <option selected>Select...</option>
+          <option>Select...</option>
           <option value="employed">Employed</option>
           <option value="self-employed">Self Employed</option>
         </select>
@@ -69,7 +69,7 @@
         <label for="gender">Gender</label>
         <select name="gender" id="gender" formControlName="gender"
                 [ngClass]="{'dirty-input-field': eligibilityForm.controls.gender.touched && eligibilityForm.controls.gender.invalid}">
-          <option selected>Select...</option>
+          <option>Select...</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
@@ -91,7 +91,7 @@
         <label for="state">Where do you live?</label>
         <select name="state" id="state" formControlName="state" (change)="prepareLocalGovernmentOptions($event)"
                 [ngClass]="{'dirty-input-field': eligibilityForm.controls.state.touched && eligibilityForm.controls.state.invalid}">
-          <option selected>Select...</option>
+          <option>Select...</option>
           <ng-container *ngFor="let state of statesInNigeria">
             <option [value]="state.state">{{state.state}}</option>
           </ng-container>
@@ -104,7 +104,7 @@
         <label for="lga">Local Government</label>
         <select name="lga" id="lga" formControlName="lga"
                 [ngClass]="{'dirty-input-field': eligibilityForm.controls.lga.touched && eligibilityForm.controls.lga.invalid}">
-          <option selected>Select...</option>
+          <option>Select...</option>
           <ng-container *ngFor="let localGovernment of localGovernmentChoiceArray">
             <option [value]="localGovernment">{{localGovernment}}</option>
           </ng-container>
@@ -125,77 +125,121 @@
     <button class="continue-button" type="submit">Continue</button>
   </form>
 
-  <form
-    *ngIf="formIndex === 2" [formGroup]="personalForm"
-    class="personal-details" (ngSubmit)="submitGenericForm('personalForm')">
+  <form *ngIf="formIndex === 2" [formGroup]="personalForm" #ngPersonalForm="ngForm"
+        class="personal-details" (ngSubmit)="submitGenericForm('personalForm')">
     <div class="form-group">
       <label for="residentialStatus">Residential Status</label>
-      <select name="residentialStatus" id="residentialStatus" formControlName="residentialStatus">
+      <select name="residentialStatus" id="residentialStatus" formControlName="residentialStatus"
+              [ngClass]="{'dirty-input-field': personalForm.controls.residentialStatus.touched && personalForm.controls.residentialStatus.invalid}">
         <option selected>Select...</option>
         <option value="owner">Owner</option>
         <option value="renting">Renting</option>
       </select>
+      <span class="error-message" *ngIf="ngPersonalForm.submitted">
+        <span *ngIf="personalForm.controls.residentialStatus.invalid">Residential Status is required</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="residentialAddress">Residential Address</label>
-      <input type="text" name="residentialAddress" id="residentialAddress" formControlName="residentialAddress">
+      <input type="text" name="residentialAddress" id="residentialAddress" formControlName="residentialAddress"
+             [ngClass]="{'dirty-input-field': personalForm.controls.residentialAddress.touched && personalForm.controls.residentialAddress.invalid}">
+      <span class="error-message" *ngIf="ngPersonalForm.submitted">
+        <span *ngIf="personalForm.controls.residentialAddress.invalid">Residential Address is required</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="residentialDate">Date Moved In</label>
-      <input type="date" name="residentialDate" id="residentialDate" formControlName="residentialDate">
+      <input type="date" name="residentialDate" id="residentialDate" formControlName="residentialDate"
+             [ngClass]="{'dirty-input-field': personalForm.controls.residentialDate.touched && personalForm.controls.residentialDate.invalid}">
+      <span class="error-message" *ngIf="ngPersonalForm.submitted">
+        <span *ngIf="personalForm.controls.residentialDate.invalid">Residential Date is required</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="maritalStatus">Marital Status</label>
-      <select name="maritalStatus" id="maritalStatus" formControlName="maritalStatus">
-        <option selected>Select...</option>
+      <select name="maritalStatus" id="maritalStatus" formControlName="maritalStatus"
+              [ngClass]="{'dirty-input-field': personalForm.controls.maritalStatus.touched && personalForm.controls.maritalStatus.invalid}">
+        <option>Select...</option>
         <option value="single">Single</option>
         <option value="married">Married</option>
       </select>
+      <span class="error-message" *ngIf="ngPersonalForm.submitted">
+        <span *ngIf="personalForm.controls.maritalStatus.invalid">Marital Status is required</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="educationLevel">Level of education</label>
-      <select name="educationLevel" id="educationLevel" formControlName="educationLevel">
+      <select name="educationLevel" id="educationLevel" formControlName="educationLevel"
+              [ngClass]="{'dirty-input-field': personalForm.controls.educationLevel.touched && personalForm.controls.educationLevel.invalid}">
         <option selected>Select...</option>
         <option value="primary">Primary</option>
         <option value="secondary">Secondary</option>
         <option value="graduate">Graduate</option>
         <option value="post-graduate">Post-Graduate</option>
       </select>
+      <span class="error-message" *ngIf="ngPersonalForm.submitted">
+        <span *ngIf="personalForm.controls.educationLevel.invalid">Education Level is required</span>
+      </span>
     </div>
     <button class="continue-button" type="submit">Continue</button>
   </form>
 
-  <form
-    *ngIf="formIndex === 3" [formGroup]="employerForm"
-    class="employment-details" (ngSubmit)="submitGenericForm('employerForm')">
+  <form *ngIf="formIndex === 3" [formGroup]="employerForm" #ngEligibilityForm="ngForm"
+        class="employment-details" (ngSubmit)="submitGenericForm('employerForm')">
     <div class="form-group">
       <label for="employer">Employer Name</label>
-      <input type="text" name="employer" id="employer" formControlName="employer">
+      <input type="text" name="employer" id="employer" formControlName="employer"
+             [ngClass]="{'dirty-input-field': employerForm.controls.employer.touched && employerForm.controls.employer.invalid}">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+        <span *ngIf="employerForm.controls.employer.invalid">Employer's Name is required!</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="employerSector">Employer Sector</label>
-      <select name="employerSector" id="employerSector" formControlName="employerSector">
-        <option selected>Select...</option>
+      <select name="employerSector" id="employerSector" formControlName="employerSector"
+              [ngClass]="{'dirty-input-field': employerForm.controls.employerSector.touched && employerForm.controls.employerSector.invalid}">
+        <option [value]="null">Select...</option>
         <option value="finance">Finance</option>
         <option value="charity">Charity</option>
         <option value="tech">Tech</option>
         <option value="agriculture">Agriculture</option>
         <option value="education">Education</option>
       </select>
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+        <span *ngIf="employerForm.controls.employerSector.invalid">Employer's Sector is required!</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="employmentDate">Employment Start Date</label>
-      <input type="date" name="employmentDate" id="employmentDate" formControlName="employmentDate">
+      <input type="date" name="employmentDate" id="employmentDate" formControlName="employmentDate"
+             [ngClass]="{'dirty-input-field': employerForm.controls.employmentDate.touched && employerForm.controls.employmentDate.invalid}">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+        <span *ngIf="employerForm.controls.employmentDate.invalid">Date of Employment is required!</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="officeAddress">Office Address</label>
-      <input type="text" name="officeAddress" id="officeAddress" formControlName="officeAddress">
+      <input type="text" name="officeAddress" id="officeAddress" formControlName="officeAddress"
+             [ngClass]="{'dirty-input-field': employerForm.controls.officeAddress.touched && employerForm.controls.officeAddress.invalid}">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+        <span *ngIf="employerForm.controls.officeAddress.invalid">Work Address is required!</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="workEmail">Work Email</label>
-      <input type="email" name="workEmail" id="workEmail" formControlName="workEmail">
+      <input type="email" name="workEmail" id="workEmail" formControlName="workEmail"
+             [ngClass]="{'dirty-input-field': employerForm.controls.workEmail.touched && employerForm.controls.workEmail.invalid}">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+        <span *ngIf="employerForm.controls.workEmail.invalid">Work Email is required!</span>
+      </span>
     </div>
     <button class="continue-button" type="submit">Submit</button>
   </form>
+
+  <div class="welcome-message" *ngIf="formIndex === 4">
+    <img src="assets/renmoney_logo.svg" alt="logo">
+    <p>You have finished your application. We will get back to you soon</p>
+    <button class="continue-button" type="submit" (click)="endApplication()">End Application</button>
+  </div>
 
 </ng-template>

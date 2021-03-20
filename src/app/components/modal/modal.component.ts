@@ -77,6 +77,13 @@ export class ModalComponent implements OnInit {
     this.displayedFormIndex += 1;
   }
 
+  endApplication(): void {
+    this.toggleModalState();
+    console.log(this.eligibilityForm.value, 'eligibilityForm');
+    console.log(this.personalForm.value, 'personalForm');
+    console.log(this.employerForm.value, 'employerForm');
+  }
+
   prepareLocalGovernmentOptions(event): void {
     const selectedState = this.statesInNigeria.find(state => state.state === event.target.value);
     selectedState ? this.localGovernmentChoiceArray = selectedState.lgas : this.localGovernmentChoiceArray = [];
