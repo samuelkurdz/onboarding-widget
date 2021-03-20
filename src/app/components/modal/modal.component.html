@@ -1,1 +1,65 @@
-<p>modal works!</p>
+<div class="overlay is-visible" id="overlay"></div>
+<div class="modal is-visible" id="modal">
+  <div class="modal-container">
+    <img id="renmoney-widget-logo" src="assets/renmoney.jpg" alt="renmoney">
+    <button class="modal-close-btn" id="close-btn" (click)="toggleModalState()">
+      x
+    </button>
+<!--    <div class="divider"></div>-->
+    <div class="modal-body">
+      <div class="modal-form">
+        <form>
+          <div class="form-group">
+            <label for="name">Full Name (middle name included)</label>
+            <input type="text" name="name" id="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+          </div>
+          <div class="form-group">
+            <label for="DOB">Date of Birth</label>
+            <input type="date" name="DOB" id="DOB">
+          </div>
+          <div class="flex-form-group">
+            <div class="form-group">
+              <label for="employment">Employment Status?</label>
+              <select name="employment" id="employment">
+                <option selected>Select...</option>
+                <option value="employed">Employed</option>
+                <option value="self-employed">Self Employed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select name="gender" id="gender">
+                <option selected>Select...</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="number" name="phone" id="phone">
+          </div>
+          <div class="flex-form-group">
+            <div class="form-group">
+              <label for="state">Where do you live?</label>
+              <input type="number" name="state" id="state">
+            </div>
+            <div class="form-group">
+              <label for="lga">Local government</label>
+              <input type="number" name="lga" id="lga">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bvn">BVN</label>
+            <input type="number" name="bvn" id="bvn">
+          </div>
+          <button class="continue-button">Continue</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

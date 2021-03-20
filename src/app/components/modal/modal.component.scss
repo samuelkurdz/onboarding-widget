@@ -1,0 +1,147 @@
+/** Modal */
+.modal {
+  transition: opacity 0.3s;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  max-width: 384px;
+  height: 620px;
+  margin: 0 auto;
+  padding: 0 15px 10px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+/** Overlay */
+.overlay {
+  transition: opacity 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.divider {
+  height: 2px;
+  background-color: #b7b7b7;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+
+  #renmoney-widget-logo {
+    align-self: center;
+    width: 50px;
+  }
+  .modal-close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 22px;
+    transition: 0.3s all;
+
+    &:hover {
+      font-weight: bolder;
+    }
+  }
+  //.modal-header {
+  //  display: flex;
+  //  justify-content: space-between;
+  //
+  //  .modal-close-btn {
+  //    position: absolute;
+  //    right: 10px;
+  //    top: 10px;
+  //    border: none;
+  //    background: transparent;
+  //    outline: none;
+  //    cursor: pointer;
+  //    font-weight: 500;
+  //    font-size: 22px;
+  //    transition: 0.3s all;
+  //
+  //    &:hover {
+  //      font-weight: bolder;
+  //    }
+  //  }
+  //}
+}
+
+.modal-form {
+  padding: 5px 0;
+}
+
+.form-group {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: bold;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 8px 16px;
+    margin: 2px 0;
+    border: 2px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+
+    &:focus {
+      border: 2px solid #555;
+    }
+  }
+}
+
+.flex-form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  .form-group {
+    flex-basis: 50%;
+  }
+}
+
+
+.continue-button {
+  width: calc(100% - 25px);
+  padding: 10px 0;
+  background: #169ba7;
+  color: white;
+  border: none;
+  outline: none;
+  position: absolute;
+  bottom: 10px;
+  right: 3%;
+}

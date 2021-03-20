@@ -1,2 +1,12 @@
-<span>{{ title }} on-boarding process!</span>
-<renmoney-modal></renmoney-modal>
+<div class="app-header">
+  <img src="assets/renmoney_logo.svg" alt="logo">
+  <h4>On-boarding Process</h4>
+</div>
+<div class="ren-display">
+  <button class="btn" id="btn-modal" (click)="toggleDisplayModal()">Pay with Renmoney</button>
+</div>
+<renmoney-modal
+  *ngIf="displayModal"
+  (closeModal)="toggleDisplayModal()"
+>
+</renmoney-modal>
