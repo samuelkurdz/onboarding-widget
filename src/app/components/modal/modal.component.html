@@ -20,7 +20,8 @@
 <ng-template #formDisplayTemplate let-formIndex="formIndex">
 
   <div class="welcome-message" *ngIf="formIndex === 0">
-    This is a renmoney loan application Widget
+    <img src="assets/renmoney_logo.svg" alt="logo">
+    <p>This is a renmoney loan application Widget</p>
     <button class="continue-button" type="submit" (click)="startApplication()">Start Application</button>
   </div>
 
@@ -88,7 +89,7 @@
     <div class="flex-form-group">
       <div class="form-group">
         <label for="state">Where do you live?</label>
-        <select name="state" id="state" formControlName="state"
+        <select name="state" id="state" formControlName="state" (change)="prepareLocalGovernmentOptions($event)"
                 [ngClass]="{'dirty-input-field': eligibilityForm.controls.state.touched && eligibilityForm.controls.state.invalid}">
           <option selected>Select...</option>
           <ng-container *ngFor="let state of statesInNigeria">
@@ -104,8 +105,8 @@
         <select name="lga" id="lga" formControlName="lga"
                 [ngClass]="{'dirty-input-field': eligibilityForm.controls.lga.touched && eligibilityForm.controls.lga.invalid}">
           <option selected>Select...</option>
-          <ng-container *ngFor="let state of statesInNigeria">
-            <option [value]="state.state">{{state.state}}</option>
+          <ng-container *ngFor="let localGovernment of localGovernmentChoiceArray">
+            <option [value]="localGovernment">{{localGovernment}}</option>
           </ng-container>
         </select>
         <span class="error-message" *ngIf="ngEligibilityForm.submitted">

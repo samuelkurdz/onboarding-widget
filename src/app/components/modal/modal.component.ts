@@ -12,11 +12,13 @@ export class ModalComponent implements OnInit {
   @Output() closeModal = new EventEmitter<boolean>();
 
   displayedFormIndex = 0;
+  localGovernmentChoiceArray: string[];
   eligibilityForm: FormGroup;
   personalForm: FormGroup;
   employerForm: FormGroup;
 
   statesInNigeria: State[];
+
   constructor(
     private formBuilder: FormBuilder
   ) {
@@ -73,6 +75,11 @@ export class ModalComponent implements OnInit {
 
   startApplication(): void {
     this.displayedFormIndex += 1;
+  }
+
+  prepareLocalGovernmentOptions(event): void {
+    const selectedState = this.statesInNigeria.find(state => state.state === event.target.value);
+    selectedState ? this.localGovernmentChoiceArray = selectedState.lgas : this.localGovernmentChoiceArray = [];
   }
 
   submitGenericForm(formName: string): void {
