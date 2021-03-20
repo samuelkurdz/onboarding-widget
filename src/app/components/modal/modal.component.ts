@@ -10,6 +10,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ModalComponent implements OnInit {
   @Output() closeModal = new EventEmitter<boolean>();
+
+  displayedFormIndex = 1;
   eligibilityForm: FormGroup;
   personalForm: FormGroup;
   employerForm: FormGroup;
@@ -67,6 +69,10 @@ export class ModalComponent implements OnInit {
 
   toggleModalState(): void {
     this.closeModal.emit(false);
+  }
+
+  submitGenericForm(): void {
+    this.displayedFormIndex += 1;
   }
 
 }
