@@ -1,4 +1,6 @@
-const nigeria = [
+import {State} from '../models/state.model';
+
+const Nigeria: State[] = [
   {
     state: 'Abia',
     lgas: [
@@ -346,7 +348,7 @@ const nigeria = [
     ]
   },
   {
-    state: 'Federal Capital Territory',
+    state: 'FCT',
     lgas: [
       'Abuja',
       'Kwali',
@@ -959,3 +961,5 @@ const nigeria = [
     ]
   }
 ];
+
+export default Nigeria;

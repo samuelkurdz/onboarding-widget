@@ -2,7 +2,7 @@
 .modal {
   transition: opacity 0.3s;
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 0;
   right: 0;
   max-width: 384px;
@@ -43,12 +43,12 @@
 
   #renmoney-widget-logo {
     align-self: center;
-    width: 50px;
+    width: 40px;
   }
   .modal-close-btn {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 18px;
+    top: 7px;
     border: none;
     background: transparent;
     outline: none;
@@ -82,6 +82,10 @@
   //    }
   //  }
   //}
+
+  .modal-body {
+    margin-top: 18px;
+  }
 }
 
 .modal-form {
