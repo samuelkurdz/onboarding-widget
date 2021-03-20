@@ -1,5 +1,6 @@
 <div class="overlay is-visible" id="overlay"></div>
-<div class="modal is-visible" id="modal">
+<div class="modal is-visible" id="modal"
+     [ngClass]="{'long-modal': displayedFormIndex === 1, 'welcome-modal': displayedFormIndex === 0}">
   <div class="modal-container">
     <img id="renmoney-widget-logo" src="assets/renmoney.jpg" alt="renmoney">
     <button class="modal-close-btn" id="close-btn" (click)="toggleModalState()">
@@ -17,22 +18,35 @@
 </div>
 
 <ng-template #formDisplayTemplate let-formIndex="formIndex">
-  <p>{{formIndex}}</p>
 
+  <div class="welcome-message" *ngIf="formIndex === 0">
+    This is a renmoney loan application Widget
+    <button class="continue-button" type="submit" (click)="startApplication()">Start Application</button>
+  </div>
   <form
-    *ngIf="formIndex === 1" [formGroup]="eligibilityForm"
-    class="eligibility-check" (ngSubmit)="submitGenericForm()">
+      *ngIf="formIndex === 1" [formGroup]="eligibilityForm" #ngEligibilityForm="ngForm"
+      class="eligibility-check" (ngSubmit)="submitGenericForm('eligibilityForm')">
     <div class="form-group">
       <label for="name">Full Name (middle name included)</label>
       <input type="text" name="name" id="name" formControlName="name">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+        <span *ngIf="eligibilityForm.controls.name.invalid">Full name is required</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" formControlName="email">
+      <input type="email" name="email" id="email" formControlName="email" [email]="true">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted || eligibilityForm.controls.email.dirty">
+        <span *ngIf="eligibilityForm.controls.email.invalid && eligibilityForm.controls.email.dirty">Incorrect Email Format!</span>
+        <span *ngIf="eligibilityForm.controls.email.invalid && eligibilityForm.controls.email.pristine">Email is required!</span>
+      </span>
     </div>
     <div class="form-group">
       <label for="DOB">Date of Birth</label>
       <input type="date" name="DOB" id="DOB" formControlName="DOB">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+        <span *ngIf="eligibilityForm.controls.DOB.invalid">Date of birth is required</span>
+      </span>
     </div>
     <div class="flex-form-group">
       <div class="form-group">
@@ -42,6 +56,9 @@
           <option value="employed">Employed</option>
           <option value="self-employed">Self Employed</option>
         </select>
+        <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+          <span *ngIf="eligibilityForm.controls.employmentState.invalid">Employment Status is required!</span>
+        </span>
       </div>
       <div class="form-group">
         <label for="gender">Gender</label>
@@ -50,11 +67,17 @@
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
+        <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+          <span *ngIf="eligibilityForm.controls.gender.invalid">Gender is required!</span>
+        </span>
       </div>
     </div>
     <div class="form-group">
       <label for="phone">Phone Number</label>
       <input type="number" name="phone" id="phone" formControlName="phone">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+        <span *ngIf="eligibilityForm.controls.phone.invalid">Your Phone Number is required!</span>
+      </span>
     </div>
     <div class="flex-form-group">
       <div class="form-group">
@@ -65,6 +88,9 @@
             <option [value]="state.state">{{state.state}}</option>
           </ng-container>
         </select>
+        <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+          <span *ngIf="eligibilityForm.controls.state.invalid">State of residence is required!</span>
+        </span>
       </div>
       <div class="form-group">
         <label for="lga">Local Government</label>
@@ -74,18 +100,24 @@
             <option [value]="state.state">{{state.state}}</option>
           </ng-container>
         </select>
+        <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+          <span *ngIf="eligibilityForm.controls.lga.invalid">Local government is required!</span>
+        </span>
       </div>
     </div>
     <div class="form-group">
       <label for="bvn">BVN</label>
       <input type="number" name="bvn" id="bvn" formControlName="bvn">
+      <span class="error-message" *ngIf="ngEligibilityForm.submitted">
+          <span *ngIf="eligibilityForm.controls.bvn.invalid">Bank Verification Number is required!</span>
+        </span>
     </div>
     <button class="continue-button" type="submit">Continue</button>
   </form>
 
   <form
     *ngIf="formIndex === 2" [formGroup]="personalForm"
-    class="personal-details" (ngSubmit)="submitGenericForm()">
+    class="personal-details" (ngSubmit)="submitGenericForm('personalForm')">
     <div class="form-group">
       <label for="residentialStatus">Residential Status</label>
       <select name="residentialStatus" id="residentialStatus" formControlName="residentialStatus">
@@ -125,7 +157,7 @@
 
   <form
     *ngIf="formIndex === 3" [formGroup]="employerForm"
-    class="employment-details" (ngSubmit)="submitGenericForm()">
+    class="employment-details" (ngSubmit)="submitGenericForm('employerForm')">
     <div class="form-group">
       <label for="employer">Employer Name</label>
       <input type="text" name="employer" id="employer" formControlName="employer">
