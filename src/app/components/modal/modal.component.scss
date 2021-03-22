@@ -145,13 +145,17 @@
 .continue-button {
   width: calc(100% - 25px);
   padding: 10px 0;
-  background: #169ba7;
+  background-color: rgba(5, 94, 131, 0.8);
+  border-radius: 4px;
   color: white;
   border: none;
   outline: none;
   position: absolute;
   bottom: 10px;
   right: 3%;
+  &:hover {
+    background-color: #055e83;
+  }
 }
 
 span.error-message {
