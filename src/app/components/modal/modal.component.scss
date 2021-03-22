@@ -22,6 +22,14 @@
   height: 500px;
 }
 
+@media screen and (max-width: 600px) {
+  .modal {
+    top: 0;
+    height: 100vh !important;
+    width: 100vw;
+  }
+}
+
 .welcome-message {
   height: 400px;
   display: flex;

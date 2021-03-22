@@ -116,14 +116,14 @@ export class ModalComponent implements OnInit {
     // console.log(this.personalForm.value, 'personalForm');
     // console.log(this.employerForm.value, 'employerForm');
     this.getTodoService.getTodo().subscribe((response) => {
-      console.log(response);
+      console.log(response, 'toDo data');
     });
     const summedData = {
       ...this.eligibilityForm.value,
       ...this.personalForm.value,
       ...this.employerForm.value
     };
-    console.log(summedData);
+    console.log(summedData, 'on-boarding form data');
   }
 
 }
