@@ -74,6 +74,9 @@ export class ModalComponent implements OnInit {
   toggleModalState(): void {
     this.closeModal.emit(false);
   }
+  backToggle(): void {
+    this.displayedFormIndex -= 1;
+  }
 
   startApplication(): void {
     this.displayedFormIndex += 1;
