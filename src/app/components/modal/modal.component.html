@@ -2,6 +2,10 @@
 <div class="modal is-visible" id="modal"
      [ngClass]="{'long-modal': displayedFormIndex === 1, 'welcome-modal': displayedFormIndex === 0}">
   <div class="modal-container">
+    <button *ngIf="1 < displayedFormIndex && displayedFormIndex < 4" class="modal-previous-btn"
+            id="previous-btn" (click)="backToggle()">
+      &#8592;
+    </button>
     <img id="renmoney-widget-logo" src="assets/renmoney.jpg" alt="renmoney">
     <button class="modal-close-btn" id="close-btn" (click)="toggleModalState()">
       x

@@ -70,6 +70,24 @@
     align-self: center;
     width: 40px;
   }
+
+  .modal-previous-btn {
+    position: absolute;
+    left: 18px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 22px;
+    transition: 0.3s all;
+
+    &:hover {
+      font-weight: bolder;
+    }
+  }
+
   .modal-close-btn {
     position: absolute;
     right: 18px;
